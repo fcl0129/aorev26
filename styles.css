@@ -192,27 +192,14 @@ to{opacity:1;transform:translateY(0);}
 
 @media (max-width:768px){
 
-body{
-background-size:180% auto;
-background-position:center top;
-background-attachment:scroll;
-}
-
 .landing-screen{
-background-size:180% auto;
+background-size:200%;
 background-position:center top;
 }
 
-.landing-inner h1{
-font-size:3rem;
-}
-
-.landing-form{
-grid-template-columns:1fr;
-}
-
-.compact-grid{
-grid-template-columns:1fr;
+body{
+background-size:200%;
+background-position:center top;
 }
 
 }
