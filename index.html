@@ -1,294 +1,192 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BDO Evening</title>
 
-<title>BDO VÅRAKTIVITET</title>
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="styles.css">
-
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
-
 <body>
 
-<nav class="container-fluid">
-<ul>
-<li><strong>VÅRAKTIVITET REVISION 2026</strong></li>
-</ul>
-
-<ul>
-<li><a href="#landing">Guest Access</a></li>
-<li><a href="#playlist">Playlist</a></li>
-<li><a href="#conversation" role="button">Conversation</a></li>
-</ul>
-</nav>
-
-<main class="container">
-
-<div class="grid">
-
-<section>
-
-<hgroup>
-<h2>Private guest access</h2>
-<h3>Hotel Kung Carl · Stockholm</h3>
-</hgroup>
-
-<section class="hero" id="landing">
-
-<div class="hero-copy">
-
-<h1>You came to the right place</h1>
-
-<p class="lead landing-swedish">
-Förbered dig på en helkväll<br>
-<em>– i sann BDO-anda</em>
-</p>
-
-<form id="nameForm" class="lookup-form">
-
-<input
-type="text"
-id="landingName"
-placeholder="Start typing your name..."
-autocomplete="off"
-required>
-
-<button type="submit">
-Open my invitation
-</button>
-
-</form>
-
-<div id="landingSuggestions" class="suggestions-box"></div>
-
-<div id="landingMessage" class="notice muted">
-Your personal invitation will appear here once your name is found.
-</div>
-
-</div>
-
-<aside class="hero-card">
-
-<p class="card-label">Private invitation</p>
-
-<h3 id="previewGuest">
-Your name
-</h3>
-
-<p id="previewTable">
-Table details will appear here
-</p>
-
-<div class="pass-mark"></div>
-
-<small>Evening details · Music access</small>
-
-</aside>
-
-</section>
-
-<section id="guestExperience" class="hidden-block">
-
-<div class="welcome-bar">
-
-<div>
-<strong id="welcomeName">Welcome</strong>
-<span id="welcomeMeta">Your details are ready.</span>
-</div>
-
-<span class="tag">Invitation active</span>
-
-</div>
-
-<div class="two-up">
-
-<article class="panel">
-
-<p class="section-label">Your evening</p>
-
-<h3 id="guestHeadline">
-Your place is prepared
-</h3>
-
-<p id="arrivalText"></p>
-
-<div class="detail-grid">
-
-<div class="detail-card">
-<span>Table</span>
-<strong id="momentTable">—</strong>
-</div>
-
-<div class="detail-card">
-<span>Venue</span>
-<strong>Hotel Kung Carl</strong>
-</div>
-
-<div class="detail-card">
-<span>City</span>
-<strong>Stockholm</strong>
-</div>
-
-</div>
-
-</article>
-
-<article class="panel">
-
-<p class="section-label">Personal pass</p>
-
-<h3>Your digital invitation</h3>
-
-<div class="pass-shell">
-
-<div>
-
-<strong id="ticketGuest">Guest</strong><br>
-<span id="ticketTable"></span><br>
-<small id="ticketId"></small>
-
-</div>
-
-<div class="pass-qr"></div>
-
-</div>
-
-<div class="actions">
-
-<a href="#" id="walletDownloadBtn" role="button">
-Download Apple Wallet pass
-</a>
-
-<a href="#playlist" class="secondary" role="button">
-Open playlist
-</a>
-
-</div>
-
-</article>
-
-</div>
-
-</section>
-
-<div class="two-up">
-
-<article class="panel">
-
-<p class="section-label">Schedule</p>
-
-<h3>The evening</h3>
-
-<div class="schedule">
-
-<div class="schedule-row">
-<span>18:30</span>
-<strong>Arrival</strong>
-</div>
-
-<div class="schedule-row">
-<span>19:15</span>
-<strong>Dinner</strong>
-</div>
-
-<div class="schedule-row">
-<span>20:30</span>
-<strong>Speeches</strong>
-</div>
-
-<div class="schedule-row">
-<span>22:00</span>
-<strong>Music & dancing</strong>
-</div>
-
-</div>
-
-</article>
-
-<article class="panel" id="playlist">
-
-<p class="section-label">Music</p>
-
-<h3>Shared playlist</h3>
-
-<a
-href="https://open.spotify.com/playlist/0ZPK7dOrXjN0dy2uHPmm4P"
-target="_blank"
-role="button">
-Open playlist
-</a>
-
-<iframe
-style="border-radius:12px"
-src="https://open.spotify.com/embed/playlist/0ZPK7dOrXjN0dy2uHPmm4P"
-width="100%"
-height="352"
-frameborder="0"
-allowfullscreen=""
-loading="lazy">
-</iframe>
-
-</article>
-
-</div>
-
-<article class="panel" id="conversation">
-
-<p class="section-label">Conversation</p>
-
-<h3>At the table</h3>
-
-<div class="prompt-box">
-
-<div id="promptText" class="prompt-text">
-Click below for a conversation prompt
-</div>
-
-<button id="newPromptBtn">
-New prompt
-</button>
-
-</div>
-
-</article>
-
-<article class="panel">
-
-<p class="section-label">Venue</p>
-
-<h3>Hotel Kung Carl</h3>
-
-<iframe
-class="map"
-src="https://www.google.com/maps?q=Hotel+Kung+Carl+Stockholm&output=embed">
-</iframe>
-
-</article>
-
-</section>
-
-</div>
-
-</main>
-
-<footer class="container">
-
-<small>
-Hotel Kung Carl · Stockholm
-</small>
-
-</footer>
-
-<script src="app.js"></script>
-
+  <main>
+    <section class="landing-screen" id="landing">
+      <div class="landing-inner">
+        <div class="landing-copy">
+          <p class="kicker">Hotel Kung Carl · Stockholm</p>
+
+          <h1>You came to the right place</h1>
+
+          <p class="landing-swedish">
+            Förbered dig på en helkväll<br />
+            <em>– i sann BDO-anda</em>
+          </p>
+
+          <form id="nameForm" class="landing-form">
+            <input
+              type="text"
+              id="landingName"
+              placeholder="Enter your name"
+              autocomplete="off"
+              required
+            />
+            <button type="submit">Enter</button>
+          </form>
+
+          <div id="landingSuggestions" class="suggestions-box"></div>
+
+          <div id="landingMessage" class="landing-note">
+            Find your name to open your personal invitation.
+          </div>
+        </div>
+
+        <aside class="glass-card">
+          <div class="card-top">
+            <span>Private invitation</span>
+            <span>BDO Evening</span>
+          </div>
+
+          <h3 id="previewGuest">Your name</h3>
+          <p id="previewTable">Table details will appear here</p>
+
+          <div class="pass-mark" aria-hidden="true"></div>
+
+          <small>Evening details · Music access</small>
+        </aside>
+      </div>
+    </section>
+
+    <section id="guestPage" class="guest-page">
+      <div class="container">
+        <div class="guest-shell">
+
+          <div class="top-utility">
+            <button id="backToLanding" class="back-link" type="button">
+              ← Back to landing
+            </button>
+          </div>
+
+          <div class="welcome-bar">
+            <div>
+              <strong id="welcomeName">Welcome</strong>
+              <span id="welcomeMeta">Your details are ready.</span>
+            </div>
+            <span class="tag">Invitation active</span>
+          </div>
+
+          <div class="two-up">
+            <article class="panel">
+              <p class="section-label">Your evening</p>
+              <h2 id="guestHeadline">Your place is prepared</h2>
+              <p id="arrivalText">Your arrival details will appear here.</p>
+
+              <div class="detail-grid">
+                <div class="detail-card">
+                  <span>Table</span>
+                  <strong id="momentTable">—</strong>
+                </div>
+                <div class="detail-card">
+                  <span>Venue</span>
+                  <strong>Hotel Kung Carl</strong>
+                </div>
+                <div class="detail-card">
+                  <span>City</span>
+                  <strong>Stockholm</strong>
+                </div>
+              </div>
+            </article>
+
+            <article class="panel">
+              <p class="section-label">Personal pass</p>
+              <h2>Your digital invitation</h2>
+
+              <div class="pass-shell">
+                <div>
+                  <strong id="ticketGuest">Guest</strong><br />
+                  <span id="ticketTable"></span><br />
+                  <small id="ticketId"></small>
+                </div>
+                <div class="pass-qr"></div>
+              </div>
+
+              <div class="actions">
+                <a href="#" id="walletDownloadBtn" role="button">Download Apple Wallet pass</a>
+              </div>
+            </article>
+          </div>
+
+          <div class="two-up">
+            <article class="panel">
+              <p class="section-label">Schedule</p>
+              <h2>The evening</h2>
+
+              <div class="schedule">
+                <div class="schedule-row"><span>18:30</span><strong>Arrival</strong></div>
+                <div class="schedule-row"><span>19:15</span><strong>Dinner</strong></div>
+                <div class="schedule-row"><span>20:30</span><strong>Speeches</strong></div>
+                <div class="schedule-row"><span>22:00</span><strong>Music & dancing</strong></div>
+              </div>
+            </article>
+
+            <article class="panel">
+              <p class="section-label">Music</p>
+              <h2>Shared playlist</h2>
+              <p>Add a song that belongs in the room.</p>
+
+              <div class="actions">
+                <a
+                  href="https://open.spotify.com/playlist/0ZPK7dOrXjN0dy2uHPmm4P?si=dcAsIxUfQt-jPHn06EeLdg&pt=f9c3d91a9304f0867ed5d4cbb2b463f1"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  role="button">Open playlist</a>
+              </div>
+
+              <iframe
+                style="border-radius:12px"
+                src="https://open.spotify.com/embed/playlist/0ZPK7dOrXjN0dy2uHPmm4P?utm_source=generator"
+                width="100%"
+                height="352"
+                frameborder="0"
+                allowfullscreen=""
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"></iframe>
+            </article>
+          </div>
+
+          <div class="two-up">
+            <article class="panel">
+              <p class="section-label">Conversation</p>
+              <h2>At the table</h2>
+
+              <div class="prompt-box">
+                <div id="promptText" class="prompt-text">
+                  Click below for a conversation prompt
+                </div>
+                <button id="newPromptBtn" type="button">New prompt</button>
+              </div>
+            </article>
+
+            <article class="panel">
+              <p class="section-label">Venue</p>
+              <h2>Hotel Kung Carl</h2>
+              <iframe
+                class="map"
+                title="Hotel Kung Carl Map"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                src="https://www.google.com/maps?q=Hotel+Kung+Carl+Stockholm&z=16&output=embed"></iframe>
+            </article>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
 </body>
 </html>
