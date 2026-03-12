@@ -23,7 +23,9 @@ html {
 
 body {
   font-family: 'Inter', sans-serif;
-  background: #201611;
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.28), rgba(0, 0, 0, 0.38)),
+    url("landing page.svg");
   color: var(--ink);
   overflow-x: hidden;
 }
@@ -152,7 +154,7 @@ main {
 }
 
 .landing-swedish em {
-  color: #f8e4c5;
+  color: white;
 }
 
 .landing-swedish.small {
@@ -175,7 +177,7 @@ main {
   border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, 0.18);
   background: rgba(255, 255, 255, 0.11);
-  color: white;
+  color: blue;
   backdrop-filter: blur(10px);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
