@@ -14,7 +14,7 @@
 <body>
   <main>
     <section class="screen landing-screen active" id="landing">
-      <div class="bg-layer landing-bg" aria-hidden="true"></div>
+      <div class="bg-layer" aria-hidden="true"></div>
 
       <div class="screen-inner landing-inner">
         <p class="kicker">Hotell Kung Carl · Stockholm</p>
@@ -31,7 +31,7 @@
             type="text"
             id="landingName"
             placeholder="Fyll i ditt fullständiga namn"
-            autocomplete="on"
+            autocomplete="off"
             required
           />
           <button type="submit">Låt kvällen börja</button>
@@ -48,29 +48,33 @@
 
       <div class="screen-inner guest-inner">
         <div class="top-utility">
-          <button id="backToLanding" class="back-link" type="button">← Back</button>
+          <button id="backToLanding" class="back-link" type="button">← Tillbaka</button>
         </div>
 
         <article class="glass-panel intro-panel">
           <p class="kicker">Våraktivitet Revision 2026</p>
           <h1 id="welcomeName">Välkommen</h1>
-          <p class="landing-swedish small" id="welcomeMeta">Your details are ready.</p>
+          <p class="landing-swedish small" id="welcomeMeta">Dina uppgifter är redo.</p>
 
           <div class="hero-table-card">
-            <span>Ditt bord</span>
-            <strong id="momentTable">—</strong>
+            <div class="table-main">
+              <span>Ditt bord</span>
+              <strong id="momentTable">—</strong>
+            </div>
+
+            <div class="table-host-inline">
+              <small>Bordsansvarig</small>
+              <div id="tableHostInline">—</div>
+            </div>
           </div>
         </article>
 
         <div class="guest-grid">
           <article class="glass-panel compact-panel">
             <p class="kicker">Våraktivitet Revision 2026</p>
-            <h2>Ditt bord</h2>
+            <h2>Dina bordsgrannar</h2>
 
             <div id="tableGuests" class="table-guests"></div>
-
-            <p class="kicker sub-kicker">Bordsansvarig</p>
-            <div id="tableHost" class="table-host"></div>
           </article>
 
           <article class="glass-panel compact-panel">
@@ -116,7 +120,7 @@
 
             <div class="prompt-box">
               <div id="promptText" class="prompt-text">
-                Click below for a conversation prompt
+                Klicka nedan för ett samtalsämne
               </div>
               <button id="newPromptBtn" type="button">Nytt ämne!</button>
             </div>
