@@ -61,13 +61,14 @@ main {
   display: flex;
 }
 
-.landing-screen {
-  height: 100svh;
-  min-height: 100svh;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-  overflow: hidden;
+.landing-screen .bg-layer{
+background:
+linear-gradient(rgba(0,0,0,0.35),rgba(0,0,0,0.45)),
+url("574fb23e-43f3-4df2-97b2-3b488b72e466.svg");
+
+background-size:cover;
+background-position:center;
+background-repeat:no-repeat;
 }
 
 .guest-screen {
