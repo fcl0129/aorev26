@@ -326,7 +326,6 @@ main {
   .bg-layer {
     background-size: 100% auto;
     background-position: center center;
-    transform: scale(1);
   }
 
   .landing-inner h1,
