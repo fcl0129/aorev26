@@ -2,16 +2,21 @@
   --ink: #f7efe6;
   --ink-soft: rgba(247, 239, 230, 0.82);
   --gold: #d3b487;
-  --panel: rgba(255, 255, 255, 0.12);
+  --panel: rgba(255, 255, 255, 0.11);
   --panel-border: rgba(255, 255, 255, 0.16);
-  --panel-strong: rgba(255, 255, 255, 0.16);
-  --shadow: rgba(0, 0, 0, 0.2);
-  --overlay-top: rgba(33, 22, 16, 0.42);
-  --overlay-bottom: rgba(18, 11, 8, 0.52);
+  --shadow: rgba(0, 0, 0, 0.24);
+  --overlay-top: rgba(33, 22, 16, 0.38);
+  --overlay-bottom: rgba(18, 11, 8, 0.5);
 }
 
 * {
   box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
 }
 
 html {
@@ -19,11 +24,20 @@ html {
 }
 
 body {
-  margin: 0;
   font-family: 'Inter', sans-serif;
-  background: #1f1611;
+  background: #201611;
   color: var(--ink);
   overflow-x: hidden;
+}
+
+body.landing-lock {
+  height: 100svh;
+  overflow: hidden;
+}
+
+body:not(.landing-lock) {
+  height: auto;
+  overflow-y: auto;
 }
 
 h1,
@@ -34,39 +48,45 @@ strong {
 }
 
 main {
-  min-height: 100vh;
+  min-height: 100svh;
 }
 
 .screen {
   position: relative;
-  height: 100svh;
   display: none;
-  align-items: center;
-  justify-content: center;
-  padding: 1.25rem;
-  overflow: hidden;
+  width: 100%;
 }
 
 .screen.active {
   display: flex;
 }
 
-body.landing-lock{
-  height:100svh;
-  overflow:hidden;
+.landing-screen {
+  height: 100svh;
+  min-height: 100svh;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  overflow: hidden;
+}
+
+.guest-screen {
+  min-height: 100svh;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 1rem;
 }
 
 .bg-layer {
   position: absolute;
   inset: 0;
+  z-index: 0;
   background:
     linear-gradient(var(--overlay-top), var(--overlay-bottom)),
     url("background.svg");
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: 112% auto;
-  transform: scale(1.02);
-  z-index: 0;
+  background-size: cover;
 }
 
 .screen-inner {
@@ -184,7 +204,7 @@ body.landing-lock{
 }
 
 .glass-panel {
-  background: linear-gradient(180deg, var(--panel-strong), var(--panel));
+  background: linear-gradient(180deg, rgba(255,255,255,0.16), var(--panel));
   border: 1px solid var(--panel-border);
   border-radius: 1.5rem;
   padding: 1.35rem;
@@ -302,34 +322,25 @@ body.landing-lock{
   }
 }
 
-/* Desktop background fit */
-@media (min-width: 1025px) {
-  .bg-layer {
-    background-size: 104% auto;
-    background-position: center center;
-  }
-}
-
-/* Tablet */
 @media (max-width: 1024px) {
-  .bg-layer {
-    background-size: 135% auto;
-    background-position: center center;
-  }
-
   .guest-grid {
     grid-template-columns: 1fr;
   }
+
+  .bg-layer {
+    background-size: cover;
+    background-position: center center;
+  }
 }
 
-/* Mobile */
 @media (max-width: 768px) {
-  .screen {
+  .landing-screen,
+  .guest-screen {
     padding: 1rem;
   }
 
   .bg-layer {
-    background-size: 100% auto;
+    background-size: cover;
     background-position: center center;
   }
 
