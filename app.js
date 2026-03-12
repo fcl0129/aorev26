@@ -25,27 +25,27 @@ const guests = [
 ].map(([name, table]) => ({ name, table }));
 
 const tableHosts = {
-1:"Victor Nordlund Gendra",
-2:"Theodor Arnald",
-3:"Agnes Rygell",
-4:"Andreas Liss",
-5:"Aria Rahmani",
-6:"Dino Avdic",
-7:"Jonathan Yamin",
-8:"Hanna Månsson",
-9:"Johan Andersson",
-10:"Joanna Benes"
+  1: "Victor Nordlund Gendra",
+  2: "Theodor Arnald",
+  3: "Agnes Rygell",
+  4: "Andreas Liss",
+  5: "Aria Rahmani",
+  6: "Dino Avdic",
+  7: "Jonathan Yamin",
+  8: "Mårten Sjögren",
+  9: "Johan Andersson",
+  10: "Joanna Benes"
 };
 
 const prompts = [
-"Vilken låt hör alltid hemma på en riktigt bra fest?",
-"Vilken stad har gjort störst intryck på dig?",
-"Vilken middag glömmer du aldrig?",
-"Vilket resmål vill du återvända till direkt?",
-"Vad gör en kväll riktigt minnesvärd?",
-"Vilket ämne kan du prata om hur länge som helst?",
-"Vad är det mest oväntade som hänt dig i år?",
-"Om kvällen hade ett soundtrack – vilken låt öppnar?"
+  "Vilken låt hör alltid hemma på en riktigt bra fest?",
+  "Vilken stad har gjort störst intryck på dig?",
+  "Vilken middag glömmer du aldrig?",
+  "Vilket resmål vill du återvända till direkt?",
+  "Vad gör en kväll riktigt minnesvärd?",
+  "Vilket ämne kan du prata om hur länge som helst?",
+  "Vad är det mest oväntade som hänt dig i år?",
+  "Om kvällen hade ett soundtrack – vilken låt öppnar?"
 ];
 
 const landing = document.getElementById("landing");
@@ -60,123 +60,99 @@ const welcomeMeta = document.getElementById("welcomeMeta");
 const tableDisplay = document.getElementById("momentTable");
 
 const tableGuestsEl = document.getElementById("tableGuests");
-const tableHostEl = document.getElementById("tableHost");
+const tableHostInlineEl = document.getElementById("tableHostInline");
 
 const promptText = document.getElementById("promptText");
 const newPromptBtn = document.getElementById("newPromptBtn");
 
 const backBtn = document.getElementById("backToLanding");
 
-function normalize(str){
-return String(str||"")
-.toLowerCase()
-.normalize("NFD")
-.replace(/[\u0300-\u036f]/g,"")
-.trim();
+function normalize(str) {
+  return String(str || "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .trim();
 }
 
-function findGuest(name){
-const q = normalize(name);
-return guests.find(g=>normalize(g.name)===q);
+function findGuest(name) {
+  const q = normalize(name);
+  return guests.find(g => normalize(g.name) === q);
 }
 
-function renderTableInfo(table){
+function renderTableInfo(table) {
+  const tableGuests = guests
+    .filter(g => g.table === table)
+    .sort((a, b) => a.name.localeCompare(b.name, "sv"));
 
-const tableGuests =
-guests
-.filter(g=>g.table===table)
-.sort((a,b)=>a.name.localeCompare(b.name,"sv"));
-
-tableGuestsEl.innerHTML =
-tableGuests.map(g=>`<div>${g.name}</div>`).join("");
-
-tableHostEl.textContent =
-tableHosts[table] || "Bordsansvarig";
-
+  tableGuestsEl.innerHTML = tableGuests.map(g => `<div>${g.name}</div>`).join("");
+  tableHostInlineEl.textContent = tableHosts[table] || "Bordsansvarig";
 }
 
-function lockLandingScroll(){
-document.body.classList.add("landing-lock");
+function lockLandingScroll() {
+  document.body.classList.add("landing-lock");
 }
 
-function unlockScroll(){
-document.body.classList.remove("landing-lock");
+function unlockScroll() {
+  document.body.classList.remove("landing-lock");
 }
 
-function openGuestPage(guest){
+function openGuestPage(guest) {
+  welcomeName.textContent = `Välkommen, ${guest.name}`;
+  welcomeMeta.textContent = `Du sitter vid bord ${guest.table}.`;
+  tableDisplay.textContent = guest.table;
 
-welcomeName.textContent = `Välkommen, ${guest.name}`;
-welcomeMeta.textContent = `Din bordsvärd ${tablehost.table}.`;
-;
+  renderTableInfo(guest.table);
 
-renderTableInfo(guest.table);
+  landing.classList.remove("active");
+  guestPage.classList.add("active");
 
-landing.classList.remove("active");
-guestPage.classList.add("active");
-
-unlockScroll();
-
-window.scrollTo({top:0,behavior:"smooth"});
+  unlockScroll();
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-function returnToLanding(){
+function returnToLanding() {
+  guestPage.classList.remove("active");
+  landing.classList.add("active");
 
-guestPage.classList.remove("active");
-landing.classList.add("active");
+  lockLandingScroll();
 
-lockLandingScroll();
+  nameInput.value = "";
+  landingMessage.textContent = "Skriv in ditt fullständiga namn för att fortsätta.";
 
-nameInput.value="";
+  window.scrollTo({ top: 0 });
 
-landingMessage.textContent =
-"Skriv in ditt fullständiga namn för att fortsätta.";
-
-window.scrollTo({top:0});
-
-setTimeout(()=>{
-nameInput.focus();
-},200);
-
+  setTimeout(() => {
+    nameInput.focus();
+  }, 200);
 }
 
-function newPrompt(){
-
-const random =
-prompts[Math.floor(Math.random()*prompts.length)];
-
-promptText.textContent = random;
-
+function newPrompt() {
+  const random = prompts[Math.floor(Math.random() * prompts.length)];
+  promptText.textContent = random;
 }
 
-nameForm.addEventListener("submit",e=>{
+nameForm.addEventListener("submit", e => {
+  e.preventDefault();
 
-e.preventDefault();
+  const guest = findGuest(nameInput.value);
 
-const guest = findGuest(nameInput.value);
+  if (!guest) {
+    landingMessage.textContent = "Vi kunde tyvärr inte hitta det namnet.";
+    return;
+  }
 
-if(!guest){
-landingMessage.textContent =
-"Vi kunde tyvärr inte hitta det namnet.";
-return;
-}
-
-landingMessage.textContent =
-`Välkommen ${guest.name}!`;
-
-openGuestPage(guest);
-
+  landingMessage.textContent = `Välkommen ${guest.name}!`;
+  openGuestPage(guest);
 });
 
-newPromptBtn.addEventListener("click",newPrompt);
-
-backBtn.addEventListener("click",returnToLanding);
+newPromptBtn.addEventListener("click", newPrompt);
+backBtn.addEventListener("click", returnToLanding);
 
 landing.classList.add("active");
-
 lockLandingScroll();
-
 newPrompt();
 
-setTimeout(()=>{
-nameInput.focus();
-},300);
+setTimeout(() => {
+  nameInput.focus();
+}, 300);
