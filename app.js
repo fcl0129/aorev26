@@ -6,7 +6,7 @@ const guests = [
 ["Barbro Karlsson",7],["Beatrice Raij Montanari",7],["Boran Külekci",4],["Carl-Johan Kjellman",4],
 ["Danielle Trocmé",5],["Dino Avdic",6],["Elektra Ammouri",7],["Emelie Aniliadis",4],
 ["Emilie Sleth",9],["Emma Christiansson",9],["Erik Karlsson",4],["Erik Mossberg",6],
-["Fabian Bellander",9],["Fanny",1],["Filip Broström",2],["Fredrik Danielsson",1],
+["Fabian Bellander",9],["Fanny Hallencreutz",1],["Filip Broström",2],["Fredrik Danielsson",1],
 ["Fredrik Lindgren",6],["Fredrik Löfqvist",3],["Gabriel Bekassy Fritzson",1],["Hanna Månsson",8],
 ["Hanna Sewén",5],["Hans-Ulric Josefsson",5],["Helene Andersson",2],["Hilma Johansson",8],
 ["Ida Haag",10],["Isa Westelius",9],["Joanna Benes",10],["Johan Andersson",9],
@@ -17,7 +17,7 @@ const guests = [
 ["Malin Nilsson",3],["Marsel Ali",8],["Martin Lilja",6],["Martin Sjöberg",4],
 ["Mary Dehlin",3],["Michelle Schwabe",7],["Mihajlo Kvocka",5],["Moa Wall",6],
 ["Mårten Sjögren",8],["Oliver Treis",1],["Otto Pehrsson",2],["Palita Thonthan",6],
-["Rebin",1],["Saeed Alharire",9],["Sara Königslehner",6],["Sebastian Van Uytven",2],
+["Rebin Jaferzadeh",1],["Saeed Alharire",9],["Sara Königslehner",6],["Sebastian Van Uytven",2],
 ["Sofia Filipoff Klarström",8],["Svea Johansson",8],["Tarek Al Saadi",10],["Teodora Stamenkovic",2],
 ["Theodor Arnald",2],["Therese Björå",6],["Thomas Jerndal",7],["Thomas Näsfeldt",5],
 ["Thomas Watson",3],["Tindra Geisewall",10],["Tushar Amin",5],["Victor Nordlund Gendra",1],
@@ -106,8 +106,8 @@ document.body.classList.remove("landing-lock");
 function openGuestPage(guest){
 
 welcomeName.textContent = `Välkommen, ${guest.name}`;
-welcomeMeta.textContent = `Du sitter vid bord ${guest.table}.`;
-tableDisplay.textContent = guest.table;
+welcomeMeta.textContent = `Din bordsvärd ${tablehost.table}.`;
+;
 
 renderTableInfo(guest.table);
 
