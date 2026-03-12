@@ -2,8 +2,6 @@
   --ink: #ffffff;
   --ink-soft: rgba(255, 255, 255, 0.86);
   --gold: #e2c39b;
-  --panel: rgba(255, 255, 255, 0.1);
-  --panel-border: rgba(255, 255, 255, 0.16);
   --shadow: rgba(0, 0, 0, 0.24);
 }
 
@@ -101,8 +99,8 @@ main {
 .guest-bg,
 .guest-screen .bg-layer {
   background:
-    linear-gradient(var(--overlay-top), var(--overlay-bottom)),
-    url("background.svg");
+    linear-gradient(rgba(0, 0, 0, 0.28), rgba(0, 0, 0, 0.38)),
+    url("landing page.svg");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
