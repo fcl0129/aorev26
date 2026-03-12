@@ -23,7 +23,7 @@ body {
   font-family: 'Inter', sans-serif;
   background:
     linear-gradient(rgba(0, 0, 0, 0.28), rgba(0, 0, 0, 0.38)),
-    url("newbg.svg");
+    url("background.svg");
   color: var(--ink);
   overflow-x: hidden;
 }
@@ -88,7 +88,7 @@ main {
 .landing-screen .bg-layer {
   background:
     linear-gradient(rgba(0, 0, 0, 0.28), rgba(0, 0, 0, 0.38)),
-    url("newbg.svg");
+    url("background.svg");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -100,7 +100,7 @@ main {
 .guest-screen .bg-layer {
   background:
     linear-gradient(rgba(0, 0, 0, 0.28), rgba(0, 0, 0, 0.38)),
-    url("newbg.svg");
+    url("background.svg");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
