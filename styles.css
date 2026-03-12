@@ -324,8 +324,8 @@ main {
   }
 
   .bg-layer {
-    background-size: 280% auto;
-    background-position: center top;
+    background-size: 100% auto;
+    background-position: center center;
     transform: scale(1);
   }
 
