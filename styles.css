@@ -51,6 +51,11 @@ main {
   display: flex;
 }
 
+body.landing-lock{
+  height:100svh;
+  overflow:hidden;
+}
+
 .bg-layer {
   position: absolute;
   inset: 0;
