@@ -84,20 +84,20 @@ main {
   z-index: 0;
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: cover;
 }
 
-/* Landing background image */
+/* Landing background */
 .landing-screen .bg-layer {
   background:
-    linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.45)),
+    linear-gradient(rgba(0, 0, 0, 0.28), rgba(0, 0, 0, 0.38)),
     url("landing page.svg");
-  background-size: cover;
-  background-position: center;
   background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-color: #201611;
 }
 
-/* Guest page background image */
+/* Guest page background */
 .guest-bg,
 .guest-screen .bg-layer {
   background:
@@ -132,11 +132,13 @@ main {
   margin-top: 1rem;
 }
 
+/* Landing title now uses same font family/feeling as other headers */
 .landing-inner h1,
 .intro-panel h1,
 .compact-panel h2 {
   margin: 0 0 1rem;
   color: white;
+  font-family: 'Cormorant Garamond', serif;
   font-size: clamp(3.2rem, 6vw, 4.8rem);
   line-height: 0.96;
   letter-spacing: -0.025em;
@@ -148,6 +150,7 @@ main {
   color: var(--ink-soft);
   font-size: 1.55rem;
   line-height: 1.6;
+  font-family: 'Cormorant Garamond', serif;
 }
 
 .landing-swedish em {
@@ -232,15 +235,40 @@ main {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 1rem;
 }
 
-.hero-table-card span {
+.table-main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.table-main span {
   color: rgba(255, 255, 255, 0.8);
 }
 
-.hero-table-card strong {
+.table-main strong {
   color: white;
   font-size: 2.1rem;
+}
+
+.table-host-inline {
+  text-align: right;
+}
+
+.table-host-inline small {
+  display: block;
+  color: rgba(255, 255, 255, 0.72);
+  margin-bottom: 0.2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.7rem;
+}
+
+#tableHostInline {
+  color: white;
+  font-weight: 600;
 }
 
 .guest-grid {
@@ -264,8 +292,7 @@ main {
 }
 
 .schedule-row,
-.table-guests div,
-.table-host {
+.table-guests div {
   border-radius: 1rem;
   padding: 0.82rem 0.95rem;
   background: rgba(255, 255, 255, 0.12);
@@ -288,11 +315,6 @@ main {
   display: grid;
   gap: 0.65rem;
   margin-top: 0.75rem;
-}
-
-.table-host {
-  margin-top: 0.55rem;
-  display: block;
 }
 
 .actions {
@@ -348,11 +370,6 @@ main {
   .full-span {
     grid-column: auto;
   }
-
-  .bg-layer {
-    background-size: cover;
-    background-position: center center;
-  }
 }
 
 @media (max-width: 768px) {
@@ -361,9 +378,13 @@ main {
     padding: 1rem;
   }
 
-  .bg-layer,
-  .landing-screen .bg-layer,
-  .guest-screen .bg-layer {
+  .landing-screen .bg-layer {
+    background-size: auto 82%;
+    background-position: center center;
+  }
+
+  .guest-screen .bg-layer,
+  .guest-bg {
     background-size: cover;
     background-position: center center;
   }
@@ -396,7 +417,16 @@ main {
     border-radius: 1.25rem;
   }
 
-  .hero-table-card strong {
+  .hero-table-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .table-host-inline {
+    text-align: left;
+  }
+
+  .table-main strong {
     font-size: 1.7rem;
   }
 
