@@ -39,7 +39,7 @@ main {
 
 .screen {
   position: relative;
-  min-height: 100svh;
+  height: 100svh;
   display: none;
   align-items: center;
   justify-content: center;
