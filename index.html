@@ -1,166 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BDO Evening</title>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<title>BDO Evening</title>
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="styles.css">
-
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
-
 <body>
+  <main>
+    <section class="screen landing-screen" id="landing">
+      <div class="bg-layer" aria-hidden="true"></div>
 
-<main>
+      <div class="screen-inner landing-inner">
+        <p class="kicker">Hotel Kung Carl · Stockholm</p>
 
-<section class="landing-screen" id="landing">
+        <h1>You came to the right place</h1>
 
-<div class="landing-inner">
+        <p class="landing-swedish">
+          Förbered dig på en helkväll<br />
+          <em>– i sann BDO-anda</em>
+        </p>
 
-<p class="kicker">Hotel Kung Carl · Stockholm</p>
+        <form id="nameForm" class="landing-form">
+          <input
+            type="text"
+            id="landingName"
+            placeholder="Enter your full name"
+            autocomplete="off"
+            required
+          />
+          <button type="submit">Open invitation</button>
+        </form>
 
-<h1>You came to the right place</h1>
+        <div id="landingMessage" class="landing-note">
+          Enter your full name to open your personal page.
+        </div>
+      </div>
+    </section>
 
-<p class="landing-swedish">
-Förbered dig på en helkväll<br>
-<em>– i sann BDO-anda</em>
-</p>
+    <section class="screen guest-screen" id="guestPage">
+      <div class="bg-layer" aria-hidden="true"></div>
 
-<form id="nameForm" class="landing-form">
+      <div class="screen-inner guest-inner">
+        <div class="top-utility">
+          <button id="backToLanding" class="back-link" type="button">← Back</button>
+        </div>
 
-<input
-type="text"
-id="landingName"
-placeholder="Search your name"
-autocomplete="off"
-required>
+        <article class="glass-panel intro-panel">
+          <p class="kicker">Private invitation</p>
+          <h1 id="welcomeName">Welcome</h1>
+          <p class="landing-swedish small" id="welcomeMeta">Your details are ready.</p>
 
-<button type="submit">
-Open invitation
-</button>
+          <div class="hero-table-card">
+            <span>Your table</span>
+            <strong id="momentTable">—</strong>
+          </div>
+        </article>
 
-</form>
+        <div class="guest-grid">
+          <article class="glass-panel compact-panel">
+            <p class="kicker">Schedule</p>
+            <h2>Tonight</h2>
 
-<div id="landingSuggestions" class="suggestions-box"></div>
+            <div class="schedule">
+              <div class="schedule-row"><span>18:30</span><strong>Arrival</strong></div>
+              <div class="schedule-row"><span>19:15</span><strong>Dinner</strong></div>
+              <div class="schedule-row"><span>20:30</span><strong>Speeches</strong></div>
+              <div class="schedule-row"><span>22:00</span><strong>Music & dancing</strong></div>
+            </div>
+          </article>
 
-<div id="landingMessage" class="landing-note">
-Find your name to open your personal page.
-</div>
+          <article class="glass-panel compact-panel">
+            <p class="kicker">Music</p>
+            <h2>Spotify</h2>
+            <p class="body-copy">Add a song that belongs in the room.</p>
 
-</div>
+            <div class="actions">
+              <a
+                href="https://open.spotify.com/playlist/0ZPK7dOrXjN0dy2uHPmm4P?si=dcAsIxUfQt-jPHn06EeLdg&pt=f9c3d91a9304f0867ed5d4cbb2b463f1"
+                target="_blank"
+                rel="noopener noreferrer"
+                role="button">Open playlist</a>
+            </div>
+          </article>
 
-</section>
+          <article class="glass-panel compact-panel">
+            <p class="kicker">Conversation</p>
+            <h2>Table prompt</h2>
 
-<section id="guestPage" class="guest-page">
+            <div class="prompt-box">
+              <div id="promptText" class="prompt-text">
+                Click below for a conversation prompt
+              </div>
+              <button id="newPromptBtn" type="button">New prompt</button>
+            </div>
+          </article>
 
-<div class="container compact-container">
+          <article class="glass-panel compact-panel">
+            <p class="kicker">Venue</p>
+            <h2>Hotel Kung Carl</h2>
+            <p class="body-copy">Your place is set and the evening is ready.</p>
 
-<div class="top-utility">
+            <iframe
+              class="map"
+              title="Hotel Kung Carl Map"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              src="https://www.google.com/maps?q=Hotel+Kung+Carl+Stockholm&z=16&output=embed"></iframe>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
 
-<button id="backToLanding" class="back-link" type="button">
-← Back
-</button>
-
-</div>
-
-<article class="panel compact-hero">
-
-<p class="section-label">Your evening</p>
-
-<h2 id="welcomeName">Welcome</h2>
-
-<p id="welcomeMeta">Your details are ready.</p>
-
-<div class="compact-table-card">
-<span>Your table</span>
-<strong id="momentTable">—</strong>
-</div>
-
-</article>
-
-<div class="compact-grid">
-
-<article class="panel compact-panel">
-
-<p class="section-label">Schedule</p>
-
-<h3>Tonight</h3>
-
-<div class="schedule">
-
-<div class="schedule-row"><span>18:30</span><strong>Arrival</strong></div>
-
-<div class="schedule-row"><span>19:15</span><strong>Dinner</strong></div>
-
-<div class="schedule-row"><span>20:30</span><strong>Speeches</strong></div>
-
-<div class="schedule-row"><span>22:00</span><strong>Music & dancing</strong></div>
-
-</div>
-
-</article>
-
-<article class="panel compact-panel">
-
-<p class="section-label">Music</p>
-
-<h3>Spotify</h3>
-
-<p>Add a song that belongs in the room.</p>
-
-<div class="actions">
-
-<a
-href="https://open.spotify.com/playlist/0ZPK7dOrXjN0dy2uHPmm4P?si=dcAsIxUfQt-jPHn06EeLdg&pt=f9c3d91a9304f0867ed5d4cbb2b463f1"
-target="_blank"
-role="button">
-
-Open playlist
-
-</a>
-
-</div>
-
-</article>
-
-<article class="panel compact-panel">
-
-<p class="section-label">Conversation</p>
-
-<h3>Table prompt</h3>
-
-<div class="prompt-box">
-
-<div id="promptText" class="prompt-text">
-Click below for a conversation prompt
-</div>
-
-<button id="newPromptBtn">
-New prompt
-</button>
-
-</div>
-
-</article>
-
-</div>
-
-</div>
-
-</section>
-
-</main>
-
-<script src="app.js"></script>
-
+  <script src="app.js"></script>
 </body>
 </html>
