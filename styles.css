@@ -86,7 +86,7 @@ main {
     url("background.svg");
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: cover;
+  background-size: 200%;
 }
 
 /* Guest page background */
