@@ -413,7 +413,8 @@ main {
 
 .host-signature {
   margin-top: 1.2rem;
-  font-style: italic;
+  font-style: bold italic;
+  text-align: center;
 }
 
 .event-footer {
