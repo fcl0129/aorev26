@@ -86,6 +86,22 @@ function findGuest(name) {
   }
 
   return guests.find(g => normalize(g.name) === q) || null;
+  const exact = guests.find(g => normalize(g.name) === q);
+  if (exact) {
+    return exact;
+  }
+
+  const startsWithMatches = guests.filter(g => normalize(g.name).startsWith(q));
+  if (startsWithMatches.length === 1) {
+    return startsWithMatches[0];
+  }
+
+  const includesMatches = guests.filter(g => normalize(g.name).includes(q));
+  if (includesMatches.length === 1) {
+    return includesMatches[0];
+  }
+
+  return null;
 }
 
 function renderTableInfo(table) {
@@ -150,6 +166,7 @@ nameForm.addEventListener("submit", e => {
 
   if (!guest) {
     landingMessage.textContent = "Vi kunde inte hitta namnet. Kontrollera stavningen och skriv för- och efternamn.";
+    landingMessage.textContent = "Vi kunde inte hitta någon exakt träff. Testa med för- och efternamn.";
     return;
   }
 
