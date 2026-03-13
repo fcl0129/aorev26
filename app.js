@@ -19,7 +19,7 @@ const guests = [
 ["William Lindfors",2],["Abel Asmerom",1],["Otto Pehrsson",8],["Palita Thonthan",6],
 ["Rebin Jaferzadeh",1],["Saeed Alharire",9],["Sara Königslehner",6],["Sebastian Van Uytven",2],
 ["Sofia Filipoff Klarström",8],["Svea Johansson",8],["Tarek Al Saadi",10],["Teodora Stamenkovic",2],
-["Theodor Arnald",2],["Therese Björå",6],["Thomas Jerndal",7],["Thomas Näsfeldt",5],
+["Theodor Arnald",2],["Carl Svärd",6],["Thomas Jerndal",7],["Thomas Näsfeldt",5],
 ["Thomas Watson",3],["Tindra Geisewall",10],["Tushar Amin",5],["Victor Nordlund Gendra",1],
 ["William Jukic",9]
 ].map(([name, table]) => ({ name, table }));
