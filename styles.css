@@ -32,7 +32,6 @@ body {
   overflow-x: hidden;
 }
 
-/* remove Pico borders */
 main,
 section,
 main > section,
@@ -80,7 +79,10 @@ main {
   min-height: 100dvh;
   align-items: center;
   justify-content: center;
-  padding: 2rem 1.25rem;
+  padding:
+    calc(env(safe-area-inset-top, 0px) + 3rem)
+    1.25rem
+    calc(env(safe-area-inset-bottom, 0px) + 2rem);
   overflow: hidden;
 }
 
@@ -130,8 +132,6 @@ main {
   margin: 0 auto;
 }
 
-/* orange kicker */
-
 .kicker {
   margin: 0 0 .9rem;
   letter-spacing: .2em;
@@ -140,8 +140,6 @@ main {
   color: var(--gold);
   font-family: 'Inter', sans-serif;
 }
-
-/* headers */
 
 .landing-inner h1,
 .intro-panel h1,
@@ -152,8 +150,6 @@ main {
   font-size: clamp(3.2rem, 6vw, 4.8rem);
   line-height: .95;
 }
-
-/* SWEDISH LANDING TEXT */
 
 .landing-swedish {
   margin: 0 auto 1.5rem;
@@ -166,8 +162,6 @@ main {
 .landing-swedish.small {
   font-size: var(--body-size);
 }
-
-/* FORM */
 
 .landing-form {
   display: grid;
@@ -190,8 +184,6 @@ main {
 .landing-form input::placeholder {
   color: rgba(255,255,255,.8);
 }
-
-/* LIQUID GLASS BUTTONS */
 
 .landing-form button,
 .actions a[role='button'],
@@ -231,8 +223,6 @@ main {
   transform: scale(.97);
 }
 
-/* GLASS PANELS */
-
 .glass-panel {
   background: rgba(0,0,0,0.34);
   border: 1px solid var(--panel-border);
@@ -242,8 +232,6 @@ main {
   box-shadow: 0 26px 60px var(--shadow);
 }
 
-/* TABLE BOX */
-
 .hero-table-card {
   margin-top: 1rem;
   padding: 1rem 1.1rem;
@@ -252,8 +240,6 @@ main {
   border: 1px solid rgba(255,255,255,0.14);
 }
 
-/* hide table number */
-
 .table-main {
   display: none;
 }
@@ -261,8 +247,6 @@ main {
 .table-host-inline {
   text-align: center;
 }
-
-/* GRID */
 
 .guest-grid {
   display: grid;
@@ -273,8 +257,6 @@ main {
 .full-span {
   grid-column: 1 / -1;
 }
-
-/* ALIGNMENT FIXES */
 
 .compact-panel,
 .compact-panel p,
@@ -292,8 +274,6 @@ main {
   text-align: center;
 }
 
-/* BODY TEXT CONSISTENT */
-
 .body-copy,
 .schedule-row,
 .table-guests div,
@@ -304,8 +284,6 @@ main {
   font-size: var(--body-size);
   line-height: 1.45;
 }
-
-/* SCHEDULE */
 
 .schedule {
   display: grid;
@@ -341,15 +319,11 @@ main {
   font-weight: 600;
 }
 
-/* PROMPT */
-
 .prompt-text {
   margin-bottom: 1rem;
   font-size: 1.9rem;
   text-align: center;
 }
-
-/* MAP */
 
 .map {
   width: 100%;
@@ -357,8 +331,6 @@ main {
   border-radius: 1rem;
   border: 0;
 }
-
-/* THANK YOU */
 
 .host-note {
   text-align: center;
@@ -373,8 +345,6 @@ main {
   margin-top: 1.2rem;
   font-style: italic;
 }
-
-/* FOOTER */
 
 .event-footer {
   margin-top: 3rem;
@@ -400,8 +370,6 @@ main {
   text-align: center;
 }
 
-/* ANIMATION */
-
 @keyframes fadeUp {
   from {
     opacity: 0;
@@ -413,7 +381,6 @@ main {
   }
 }
 
-/* viewport fallback */
 @supports not (height: 100dvh) {
   body.landing-lock {
     height: 100vh;
@@ -426,8 +393,6 @@ main {
   }
 }
 
-/* MOBILE */
-
 @media (max-width: 1024px) {
   .guest-grid {
     grid-template-columns: 1fr;
@@ -437,17 +402,27 @@ main {
 @media (max-width: 768px) {
   .landing-screen {
     min-height: 100dvh;
-    padding: 2rem 1.25rem 3rem;
+    justify-content: flex-start;
+    padding:
+      calc(env(safe-area-inset-top, 0px) + 4.5rem)
+      1.25rem
+      calc(env(safe-area-inset-bottom, 0px) + 2rem);
   }
 
   .landing-inner h1 {
-    font-size: 4rem;
-    line-height: .95;
+    font-size: 3.5rem;
+    line-height: .94;
+    margin-bottom: 1.1rem;
+  }
+
+  .kicker {
+    margin-bottom: 1.15rem;
+    font-size: .72rem;
   }
 
   .landing-swedish {
-    font-size: 1.5rem;
-    margin-bottom: 1.4rem;
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
   }
 
   .landing-form {
