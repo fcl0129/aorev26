@@ -1,8 +1,11 @@
 :root {
   --ink: #ffffff;
-  --ink-soft: rgba(255, 255, 255, 0.86);
+  --ink-soft: rgba(255, 255, 255, 0.88);
   --gold: #e2c39b;
   --shadow: rgba(0, 0, 0, 0.24);
+  --panel-border: rgba(255, 255, 255, 0.16);
+  --button-blue: #12345b;
+  --button-blue-hover: #1a4679;
 }
 
 * {
@@ -20,7 +23,20 @@ html {
 }
 
 body {
-  
+  font-family: 'Cormorant Garamond', serif;
+  background: #201611;
+  color: var(--ink);
+  overflow-x: hidden;
+}
+
+/* remove default borders from framework elements */
+main,
+section,
+main > section,
+.container,
+.container-fluid {
+  border: none !important;
+  box-shadow: none !important;
 }
 
 body.landing-lock {
@@ -58,7 +74,7 @@ main {
 .landing-screen {
   height: 100svh;
   min-height: 100svh;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   padding: 1rem;
   overflow: hidden;
@@ -79,17 +95,17 @@ main {
   background-position: center center;
 }
 
-/* Landing background */
+/* landing background should fill the whole screen */
 .landing-screen .bg-layer {
   background:
     linear-gradient(rgba(0, 0, 0, 0.28), rgba(0, 0, 0, 0.38)),
     url("background.svg");
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: center center;
   background-size: cover;
 }
 
-/* Guest page background */
+/* guest page background */
 .guest-bg,
 .guest-screen .bg-layer {
   background:
@@ -118,13 +134,13 @@ main {
   text-transform: uppercase;
   font-size: 0.8rem;
   color: var(--gold);
+  font-family: 'Cormorant Garamond', serif;
 }
 
 .sub-kicker {
   margin-top: 1rem;
 }
 
-/* Landing title now uses same font family/feeling as other headers */
 .landing-inner h1,
 .intro-panel h1,
 .compact-panel h2 {
@@ -140,8 +156,8 @@ main {
   margin: 0 auto 1.5rem;
   max-width: 34rem;
   color: white;
-  font-size: 2.5rem;
-  line-height: 1.6;
+  font-size: 2rem;
+  line-height: 1.45;
   font-family: 'Cormorant Garamond', serif;
 }
 
@@ -152,7 +168,7 @@ main {
 .landing-swedish.small {
   margin-bottom: 0;
   max-width: none;
-  font-size: 2.5rem;
+  font-size: 2rem;
 }
 
 .landing-form {
@@ -170,12 +186,20 @@ main {
   border: 1px solid rgba(255, 255, 255, 0.18);
   background: rgba(255, 255, 255, 0.11);
   color: white;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem;
   backdrop-filter: blur(10px);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .landing-form input::placeholder {
-  color: rgba(255, 255, 255, 0.78);
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.landing-form input:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.18);
 }
 
 .landing-form button,
@@ -185,15 +209,28 @@ main {
   min-height: 50px;
   border: none;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.96);
-  color: #063852;
+  background: var(--button-blue);
+  color: white !important;
   font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.landing-form button:hover,
+.actions a[role='button']:hover,
+.prompt-box button:hover,
+.back-link:hover {
+  background: var(--button-blue-hover);
+  color: white !important;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.16);
 }
 
 .landing-note {
   margin-top: 0.95rem;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.82);
   font-size: 1rem;
+  font-family: 'Cormorant Garamond', serif;
 }
 
 .guest-inner {
@@ -236,17 +273,20 @@ main {
   gap: 0.2rem;
 }
 
+/* hide "Ditt bord" text inside the card */
 .table-main span {
-  color: rgba(255, 255, 255, 0.8);
+  display: none;
 }
 
 .table-main strong {
   color: white;
   font-size: 2.1rem;
+  font-family: 'Cormorant Garamond', serif;
 }
 
 .table-host-inline {
   text-align: right;
+  font-family: 'Cormorant Garamond', serif;
 }
 
 .table-host-inline small {
@@ -256,11 +296,14 @@ main {
   text-transform: uppercase;
   letter-spacing: 0.08em;
   font-size: 0.7rem;
+  font-family: 'Inter', sans-serif;
 }
 
 #tableHostInline {
   color: white;
   font-weight: 600;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
 }
 
 .guest-grid {
@@ -276,6 +319,8 @@ main {
 
 .body-copy {
   color: var(--ink-soft);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
 }
 
 .schedule {
@@ -291,6 +336,8 @@ main {
   background: rgba(255, 255, 255, 0.12);
   border: 1px solid rgba(255, 255, 255, 0.12);
   color: white;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.25rem;
 }
 
 .schedule-row {
@@ -344,6 +391,59 @@ main {
   margin-top: 0.8rem;
 }
 
+.host-note {
+  text-align: center;
+}
+
+.host-message {
+  max-width: 600px;
+  margin: 1rem auto;
+  font-size: 1.4rem;
+  line-height: 1.6;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.host-signature {
+  margin-top: 1.2rem;
+  font-style: italic;
+  font-size: 1.3rem;
+  opacity: 0.9;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.event-footer {
+  margin-top: 3rem;
+  padding-bottom: 3rem;
+  text-align: center;
+}
+
+.footer-inner {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.footer-divider {
+  height: 1px;
+  width: 80px;
+  margin: 2rem auto;
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.footer-event {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  letter-spacing: 0.05em;
+  color: white;
+}
+
+.footer-location {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  opacity: 0.75;
+  margin-top: 0.4rem;
+  color: white;
+}
+
 @keyframes fadeUp {
   from {
     opacity: 0;
@@ -371,11 +471,7 @@ main {
     padding: 1rem;
   }
 
-  .landing-screen .bg-layer {
-    background-size: auto 82%;
-    background-position: center center;
-  }
-
+  .landing-screen .bg-layer,
   .guest-screen .bg-layer,
   .guest-bg {
     background-size: cover;
@@ -391,6 +487,10 @@ main {
   .landing-swedish {
     font-size: 1.2rem;
     margin-bottom: 1.2rem;
+  }
+
+  .landing-swedish.small {
+    font-size: 1.2rem;
   }
 
   .landing-form {
@@ -427,68 +527,7 @@ main {
     font-size: 1.35rem;
   }
 
-  .spotify-embed {
-    height: 300px !important;
-  }
-
   .map {
     min-height: 260px;
   }
-
-  .host-note {
-  text-align: center;
-}
-
-.host-message {
-  max-width: 600px;
-  margin: 1rem auto;
-  font-size: 1.4rem;
-  line-height: 1.6;
-}
-
-.host-signature {
-  margin-top: 1.2rem;
-  font-style: italic;
-  font-size: 1.3rem;
-  opacity: 0.9;
-}
-.event-footer {
-  margin-top: 3rem;
-  padding-bottom: 3rem;
-  text-align: center;
-}
-
-.footer-inner {
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.footer-divider {
-  height: 1px;
-  width: 80px;
-  margin: 2rem auto;
-  background: rgba(255,255,255,0.35);
-}
-
-.footer-event {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.5rem;
-  letter-spacing: 0.05em;
-}
-
-.footer-location {
-  font-size: 1rem;
-  opacity: 0.75;
-  margin-top: 0.4rem;
-}
-  main,
-section {
-  border: none !important;
-}
-  .container,
-.container-fluid {
-  border: none !important;
-  box-shadow: none !important;
-}
-  
 }
