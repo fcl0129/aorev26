@@ -61,6 +61,7 @@ const tableDisplay = document.getElementById("momentTable");
 
 const tableGuestsEl = document.getElementById("tableGuests");
 const tableHostInlineEl = document.getElementById("tableHostInline");
+const tableNumberInlineEl = document.getElementById("tableNumberInline");
 
 const promptText = document.getElementById("promptText");
 const newPromptBtn = document.getElementById("newPromptBtn");
@@ -84,6 +85,7 @@ function findGuest(name) {
     return null;
   }
 
+  return guests.find(g => normalize(g.name) === q) || null;
   const exact = guests.find(g => normalize(g.name) === q);
   if (exact) {
     return exact;
@@ -109,6 +111,7 @@ function renderTableInfo(table) {
 
   tableGuestsEl.innerHTML = tableGuests.map(g => `<div>${g.name}</div>`).join("");
   tableHostInlineEl.textContent = tableHosts[table] || "Bordsansvarig";
+  tableNumberInlineEl.textContent = table;
 }
 
 function lockLandingScroll() {
@@ -162,6 +165,7 @@ nameForm.addEventListener("submit", e => {
   const guest = findGuest(nameInput.value);
 
   if (!guest) {
+    landingMessage.textContent = "Vi kunde inte hitta namnet. Kontrollera stavningen och skriv för- och efternamn.";
     landingMessage.textContent = "Vi kunde inte hitta någon exakt träff. Testa med för- och efternamn.";
     return;
   }
