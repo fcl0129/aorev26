@@ -87,7 +87,7 @@ main{
   background:
   linear-gradient(rgba(0,0,0,0.28),rgba(0,0,0,0.38)),
   url("landing page.svg");
-  background-size:cover;
+  background-size:300%;
 }
 
 .guest-screen .bg-layer{
