@@ -72,12 +72,34 @@ function normalize(str) {
     .toLowerCase()
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[’']/g, "")
+    .replace(/\s+/g, " ")
     .trim();
 }
 
 function findGuest(name) {
   const q = normalize(name);
-  return guests.find(g => normalize(g.name) === q);
+
+  if (!q) {
+    return null;
+  }
+
+  const exact = guests.find(g => normalize(g.name) === q);
+  if (exact) {
+    return exact;
+  }
+
+  const startsWithMatches = guests.filter(g => normalize(g.name).startsWith(q));
+  if (startsWithMatches.length === 1) {
+    return startsWithMatches[0];
+  }
+
+  const includesMatches = guests.filter(g => normalize(g.name).includes(q));
+  if (includesMatches.length === 1) {
+    return includesMatches[0];
+  }
+
+  return null;
 }
 
 function renderTableInfo(table) {
@@ -103,6 +125,7 @@ function openGuestPage(guest) {
   tableDisplay.textContent = guest.table;
 
   renderTableInfo(guest.table);
+  sessionStorage.setItem("activeGuest", guest.name);
 
   landing.classList.remove("active");
   guestPage.classList.add("active");
@@ -118,6 +141,7 @@ function returnToLanding() {
   lockLandingScroll();
 
   nameInput.value = "";
+  sessionStorage.removeItem("activeGuest");
   landingMessage.textContent = "Skriv in ditt fullständiga namn för att fortsätta.";
 
   window.scrollTo({ top: 0 });
@@ -138,7 +162,7 @@ nameForm.addEventListener("submit", e => {
   const guest = findGuest(nameInput.value);
 
   if (!guest) {
-    landingMessage.textContent = "Vi kunde tyvärr inte hitta det namnet.";
+    landingMessage.textContent = "Vi kunde inte hitta någon exakt träff. Testa med för- och efternamn.";
     return;
   }
 
@@ -152,6 +176,14 @@ backBtn.addEventListener("click", returnToLanding);
 landing.classList.add("active");
 lockLandingScroll();
 newPrompt();
+
+const savedGuestName = sessionStorage.getItem("activeGuest");
+if (savedGuestName) {
+  const savedGuest = findGuest(savedGuestName);
+  if (savedGuest) {
+    openGuestPage(savedGuest);
+  }
+}
 
 setTimeout(() => {
   nameInput.focus();
