@@ -27,7 +27,7 @@ html {
 
 body {
   font-family: 'Cormorant Garamond', serif;
-  background:  url("bgai.svg");
+  background: url("bgai.svg");
   color: var(--ink);
   overflow-x: hidden;
 }
@@ -43,7 +43,7 @@ main > section,
 }
 
 body.landing-lock {
-  height: 100svh;
+  height: 100dvh;
   overflow: hidden;
 }
 
@@ -61,7 +61,7 @@ strong {
 }
 
 main {
-  min-height: 100svh;
+  min-height: 100dvh;
 }
 
 .screen {
@@ -77,10 +77,11 @@ main {
 /* LANDING PAGE */
 
 .landing-screen {
-  height: 100svh;
+  min-height: 100dvh;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
+  padding: 2rem 1.25rem;
+  overflow: hidden;
 }
 
 .bg-layer {
@@ -91,10 +92,27 @@ main {
   background-position: center center;
 }
 
+.landing-screen .bg-layer {
+  background:
+    linear-gradient(rgba(0,0,0,0.28), rgba(0,0,0,0.38)),
+    url("landing page.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+.guest-screen {
+  min-height: 100dvh;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 1rem;
+}
+
 .guest-screen .bg-layer {
   background:
     linear-gradient(rgba(0,0,0,0.28), rgba(0,0,0,0.38)),
     url("background.svg");
+  background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
 }
@@ -107,8 +125,9 @@ main {
 }
 
 .landing-inner {
-  max-width: 760px;
+  width: min(100%, 760px);
   text-align: center;
+  margin: 0 auto;
 }
 
 /* orange kicker */
@@ -394,6 +413,19 @@ main {
   }
 }
 
+/* viewport fallback */
+@supports not (height: 100dvh) {
+  body.landing-lock {
+    height: 100vh;
+  }
+
+  main,
+  .landing-screen,
+  .guest-screen {
+    min-height: 100vh;
+  }
+}
+
 /* MOBILE */
 
 @media (max-width: 1024px) {
@@ -403,8 +435,19 @@ main {
 }
 
 @media (max-width: 768px) {
+  .landing-screen {
+    min-height: 100dvh;
+    padding: 2rem 1.25rem 3rem;
+  }
+
+  .landing-inner h1 {
+    font-size: 4rem;
+    line-height: .95;
+  }
+
   .landing-swedish {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
+    margin-bottom: 1.4rem;
   }
 
   .landing-form {
@@ -414,6 +457,16 @@ main {
   .landing-form input,
   .landing-form button {
     width: 100%;
+  }
+
+  .landing-screen .bg-layer {
+    background-size: cover;
+    background-position: center center;
+  }
+
+  .guest-screen .bg-layer {
+    background-size: cover;
+    background-position: center center;
   }
 
   .map {
