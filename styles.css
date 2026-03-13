@@ -546,3 +546,17 @@ main {
   text-align: center;
   color: #fff !important;
 }
+
+
+/* White text for greeting + map panels */
+.host-note,
+.host-note h2,
+.host-note .kicker,
+.host-note .host-message,
+.host-note .host-signature,
+.map-panel,
+.map-panel h2,
+.map-panel .kicker,
+.map-panel .body-copy {
+  color: #fff !important;
+}
