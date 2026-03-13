@@ -61,6 +61,7 @@ const tableDisplay = document.getElementById("momentTable");
 
 const tableGuestsEl = document.getElementById("tableGuests");
 const tableHostInlineEl = document.getElementById("tableHostInline");
+const tableNumberInlineEl = document.getElementById("tableNumberInline");
 
 const promptText = document.getElementById("promptText");
 const newPromptBtn = document.getElementById("newPromptBtn");
@@ -72,12 +73,19 @@ function normalize(str) {
     .toLowerCase()
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[’']/g, "")
+    .replace(/\s+/g, " ")
     .trim();
 }
 
 function findGuest(name) {
   const q = normalize(name);
-  return guests.find(g => normalize(g.name) === q);
+
+  if (!q) {
+    return null;
+  }
+
+  return guests.find(g => normalize(g.name) === q) || null;
 }
 
 function renderTableInfo(table) {
@@ -87,6 +95,7 @@ function renderTableInfo(table) {
 
   tableGuestsEl.innerHTML = tableGuests.map(g => `<div>${g.name}</div>`).join("");
   tableHostInlineEl.textContent = tableHosts[table] || "Bordsansvarig";
+  tableNumberInlineEl.textContent = table;
 }
 
 function lockLandingScroll() {
@@ -103,6 +112,7 @@ function openGuestPage(guest) {
   tableDisplay.textContent = guest.table;
 
   renderTableInfo(guest.table);
+  sessionStorage.setItem("activeGuest", guest.name);
 
   landing.classList.remove("active");
   guestPage.classList.add("active");
@@ -118,6 +128,7 @@ function returnToLanding() {
   lockLandingScroll();
 
   nameInput.value = "";
+  sessionStorage.removeItem("activeGuest");
   landingMessage.textContent = "Skriv in ditt fullständiga namn för att fortsätta.";
 
   window.scrollTo({ top: 0 });
@@ -138,7 +149,7 @@ nameForm.addEventListener("submit", e => {
   const guest = findGuest(nameInput.value);
 
   if (!guest) {
-    landingMessage.textContent = "Vi kunde tyvärr inte hitta det namnet.";
+    landingMessage.textContent = "Vi kunde inte hitta namnet. Kontrollera stavningen och skriv för- och efternamn.";
     return;
   }
 
@@ -152,6 +163,14 @@ backBtn.addEventListener("click", returnToLanding);
 landing.classList.add("active");
 lockLandingScroll();
 newPrompt();
+
+const savedGuestName = sessionStorage.getItem("activeGuest");
+if (savedGuestName) {
+  const savedGuest = findGuest(savedGuestName);
+  if (savedGuest) {
+    openGuestPage(savedGuest);
+  }
+}
 
 setTimeout(() => {
   nameInput.focus();
