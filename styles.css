@@ -27,7 +27,7 @@ html {
 
 body {
   font-family: 'Cormorant Garamond', serif;
-  background: #201611;
+  background:  url("background.svg");
   color: var(--ink);
   overflow-x: hidden;
 }
