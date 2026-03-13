@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sv">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <main>
+  <main id="top">
     <section class="screen landing-screen active" id="landing">
       <div class="bg-layer" aria-hidden="true"></div>
 
@@ -26,18 +26,19 @@
           <em>– i sann BDO-anda</em>
         </p>
 
-        <form id="nameForm" class="landing-form">
+        <form id="nameForm" class="landing-form" novalidate>
           <input
             type="text"
             id="landingName"
             placeholder="Fyll i ditt fullständiga namn"
-            autocomplete="off"
+            autocomplete="name"
+            aria-label="Fullständigt namn"
             required
           />
           <button type="submit">Låt kvällen börja</button>
         </form>
 
-        <div id="landingMessage" class="landing-note">
+        <div id="landingMessage" class="landing-note" role="status" aria-live="polite">
           Skriv in ditt fullständiga namn för att fortsätta.
         </div>
       </div>
@@ -48,7 +49,7 @@
 
       <div class="screen-inner guest-inner">
         <div class="top-utility">
-          <button id="backToLanding" class="back-link" type="button">← Tillbaka</button>
+          <button id="backToLanding" class="back-link" type="button" aria-label="Tillbaka till startsidan">← Tillbaka</button>
         </div>
 
         <article class="glass-panel intro-panel">
@@ -63,7 +64,7 @@
             </div>
 
             <div class="table-host-inline">
-              <small>Bordsansvarig</small>
+              <small>Bordsansvarig · Bord <span id="tableNumberInline">—</span></small>
               <div id="tableHostInline">—</div>
             </div>
           </div>
@@ -88,7 +89,7 @@
             </div>
           </article>
 
-          <article class="glass-panel compact-panel">
+          <article class="glass-panel compact-panel spotify-card">
             <p class="kicker">Music</p>
             <h2>Spotify</h2>
             <p class="body-copy">
@@ -118,10 +119,15 @@
             </div>
           </article>
 
-          <article class="glass-panel compact-panel full-span">
+          <article class="glass-panel compact-panel full-span map-panel">
             <p class="kicker">Hotell Kung Carl</p>
             <h2>Hur tar jag mig dit?</h2>
             <p class="body-copy">För den som saknar lokalsinne ;)</p>
+            <div class="actions map-actions">
+              <a href="https://maps.google.com/?q=Hotel+Kung+Carl+Stockholm" target="_blank" rel="noopener noreferrer" role="button">
+                Öppna i Google Maps
+              </a>
+            </div>
 
             <iframe
               class="map"

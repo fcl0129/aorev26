@@ -38,14 +38,36 @@ const tableHosts = {
 };
 
 const prompts = [
-  "Vilken låt hör alltid hemma på en riktigt bra fest?",
-  "Vilken stad har gjort störst intryck på dig?",
-  "Vilken middag glömmer du aldrig?",
-  "Vilket resmål vill du återvända till direkt?",
-  "Vad gör en kväll riktigt minnesvärd?",
-  "Vilket ämne kan du prata om hur länge som helst?",
-  "Vad är det mest oväntade som hänt dig i år?",
-  "Om kvällen hade ett soundtrack – vilken låt öppnar?"
+  "Om ditt liv var en Netflix-serie – vad skulle pilotavsnittet heta?",
+  "Vilken låt får dig att känna dig som huvudpersonen i en film?",
+  "Vad är det konstigaste men bästa du har ätit?",
+  "Vilken kollega skulle överleva längst i ett escape room – och varför?",
+  "Om du fick teleportera till valfri plats i 24 timmar, vart åker du?",
+  "Vilken liten vardagsgrej gör dig orimligt glad?",
+  "Vad hade du velat vara riktigt bra på utan att behöva öva?",
+  "Vilket råd skulle du ge till ditt 18-åriga jag?",
+  "Om du öppnade en bar imorgon – vad skulle signaturdrinken heta?",
+  "Vilken app skulle du inte klara dig utan?",
+  "Vad är ditt mest underskattade restips?",
+  "Om du fick välja en superkraft för jobbet, vilken skulle det vara?",
+  "Vilken film kan du se om hur många gånger som helst?",
+  "Vad är det mest spontana du någonsin gjort?",
+  "Vilken låt måste med i kvällens spellista för att rädda stämningen?",
+  "Om du bara fick äta en middag resten av året – vad väljer du?",
+  "Vilken stad matchar din personlighet bäst?",
+  "Vad är ditt bästa partytrick (PG-versionen)?",
+  "Om din vecka hade en rubrik i tidningen, vad skulle den vara?",
+  "Vilket ord beskriver din energi ikväll?",
+  "Vad har du lärt dig senaste året som överraskade dig?",
+  "Vilken kändis hade passat bäst vid ert bord ikväll?",
+  "Om ni var ett band vid bordet – vad skulle ni heta?",
+  "Vad är din go-to karaoke-låt?",
+  "Vilken doft tar dig direkt tillbaka till en specifik minnesbild?",
+  "Vad är det roligaste missförståndet du varit med om?",
+  "Om du fick byta liv med någon i 48 timmar, vem väljer du?",
+  "Vilken serie borde alla ha sett men få har sett?",
+  "Vad är ditt bästa tips för en riktigt lyckad kväll?",
+  "Om kvällen får ett motto – vad blir det?"
 ];
 
 const landing = document.getElementById("landing");
@@ -61,6 +83,7 @@ const tableDisplay = document.getElementById("momentTable");
 
 const tableGuestsEl = document.getElementById("tableGuests");
 const tableHostInlineEl = document.getElementById("tableHostInline");
+const tableNumberInlineEl = document.getElementById("tableNumberInline");
 
 const promptText = document.getElementById("promptText");
 const newPromptBtn = document.getElementById("newPromptBtn");
@@ -72,12 +95,19 @@ function normalize(str) {
     .toLowerCase()
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[’']/g, "")
+    .replace(/\s+/g, " ")
     .trim();
 }
 
 function findGuest(name) {
   const q = normalize(name);
-  return guests.find(g => normalize(g.name) === q);
+
+  if (!q) {
+    return null;
+  }
+
+  return guests.find(g => normalize(g.name) === q) || null;
 }
 
 function renderTableInfo(table) {
@@ -87,6 +117,7 @@ function renderTableInfo(table) {
 
   tableGuestsEl.innerHTML = tableGuests.map(g => `<div>${g.name}</div>`).join("");
   tableHostInlineEl.textContent = tableHosts[table] || "Bordsansvarig";
+  tableNumberInlineEl.textContent = table;
 }
 
 function lockLandingScroll() {
@@ -103,6 +134,7 @@ function openGuestPage(guest) {
   tableDisplay.textContent = guest.table;
 
   renderTableInfo(guest.table);
+  sessionStorage.setItem("activeGuest", guest.name);
 
   landing.classList.remove("active");
   guestPage.classList.add("active");
@@ -118,6 +150,7 @@ function returnToLanding() {
   lockLandingScroll();
 
   nameInput.value = "";
+  sessionStorage.removeItem("activeGuest");
   landingMessage.textContent = "Skriv in ditt fullständiga namn för att fortsätta.";
 
   window.scrollTo({ top: 0 });
@@ -138,7 +171,7 @@ nameForm.addEventListener("submit", e => {
   const guest = findGuest(nameInput.value);
 
   if (!guest) {
-    landingMessage.textContent = "Vi kunde tyvärr inte hitta det namnet.";
+    landingMessage.textContent = "Vi kunde inte hitta namnet. Kontrollera stavningen och skriv för- och efternamn.";
     return;
   }
 
@@ -152,6 +185,14 @@ backBtn.addEventListener("click", returnToLanding);
 landing.classList.add("active");
 lockLandingScroll();
 newPrompt();
+
+const savedGuestName = sessionStorage.getItem("activeGuest");
+if (savedGuestName) {
+  const savedGuest = findGuest(savedGuestName);
+  if (savedGuest) {
+    openGuestPage(savedGuest);
+  }
+}
 
 setTimeout(() => {
   nameInput.focus();
