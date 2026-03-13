@@ -16,7 +16,7 @@ const guests = [
 ["Leon Nordlund",3],["Lina Wall",1],["Linn Jansson",1],["Lisa Haack",8],
 ["Malin Nilsson",3],["Marsel Ali",8],["Martin Lilja",6],["Martin Sjöberg",4],
 ["Mary Dehlin",3],["Michelle Schwabe",7],["Mihajlo Kvocka",5],["Moa Wall",6],
-["Mårten Sjögren",8],["Oliver Treis",1],["Otto Pehrsson",2],["Palita Thonthan",6],
+["Mårten Sjögren",8],["Abel Asmerom",1],["Otto Pehrsson",2],["Palita Thonthan",6],
 ["Rebin Jaferzadeh",1],["Saeed Alharire",9],["Sara Königslehner",6],["Sebastian Van Uytven",2],
 ["Sofia Filipoff Klarström",8],["Svea Johansson",8],["Tarek Al Saadi",10],["Teodora Stamenkovic",2],
 ["Theodor Arnald",2],["Therese Björå",6],["Thomas Jerndal",7],["Thomas Näsfeldt",5],
