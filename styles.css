@@ -94,7 +94,7 @@ main {
 .landing-screen .bg-layer {
   background:
     linear-gradient(rgba(0,0,0,0.28), rgba(0,0,0,0.38)),
-    url("lp.svg");
+    url("background.svg");
   background-size: cover;
   background-position: center center;
 }
