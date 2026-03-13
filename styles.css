@@ -85,8 +85,8 @@ main {
     linear-gradient(rgba(0, 0, 0, 0.28), rgba(0, 0, 0, 0.38)),
     url("background.svg");
   background-repeat: no-repeat;
-  background-position: center center;
-  background-size: 200%;
+  background-position: center;
+  background-size: cover;
 }
 
 /* Guest page background */
