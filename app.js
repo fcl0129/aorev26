@@ -75,6 +75,7 @@ const guestPage = document.getElementById("guestPage");
 
 const nameInput = document.getElementById("landingName");
 const nameForm = document.getElementById("nameForm");
+const nameSuggestions = document.getElementById("nameSuggestions");
 const landingMessage = document.getElementById("landingMessage");
 
 const welcomeName = document.getElementById("welcomeName");
@@ -107,7 +108,6 @@ function findGuest(name) {
     return null;
   }
 
-  return guests.find(g => normalize(g.name) === q) || null;
   const exact = guests.find(g => normalize(g.name) === q);
   if (exact) {
     return exact;
@@ -124,6 +124,18 @@ function findGuest(name) {
   }
 
   return null;
+}
+
+function getGuestSuggestions(name) {
+  const q = normalize(name);
+
+  if (q.length < 2) {
+    return [];
+  }
+
+  return guests
+    .filter(g => normalize(g.name).includes(q))
+    .slice(0, 4);
 }
 
 function renderTableInfo(table) {
@@ -168,6 +180,7 @@ function returnToLanding() {
   nameInput.value = "";
   sessionStorage.removeItem("activeGuest");
   landingMessage.textContent = "Skriv in ditt fullständiga namn för att fortsätta.";
+  nameSuggestions.innerHTML = "";
 
   window.scrollTo({ top: 0 });
 
@@ -181,23 +194,49 @@ function newPrompt() {
   promptText.textContent = random;
 }
 
+function renderSuggestions() {
+  const suggestions = getGuestSuggestions(nameInput.value);
+
+  if (suggestions.length === 0) {
+    nameSuggestions.innerHTML = "";
+    return;
+  }
+
+  nameSuggestions.innerHTML = suggestions
+    .map(g => `<button class="name-chip" type="button" data-name="${g.name}">${g.name}</button>`)
+    .join("");
+}
+
 nameForm.addEventListener("submit", e => {
   e.preventDefault();
 
   const guest = findGuest(nameInput.value);
 
   if (!guest) {
-    landingMessage.textContent = "Vi kunde inte hitta namnet. Kontrollera stavningen och skriv för- och efternamn.";
-    landingMessage.textContent = "Vi kunde inte hitta någon exakt träff. Testa med för- och efternamn.";
+    landingMessage.textContent = "Vi kunde inte hitta någon exakt träff. Testa med för- och efternamn eller välj ett förslag nedan.";
+    renderSuggestions();
     return;
   }
 
+  nameSuggestions.innerHTML = "";
   landingMessage.textContent = `Välkommen ${guest.name}!`;
   openGuestPage(guest);
 });
 
 newPromptBtn.addEventListener("click", newPrompt);
 backBtn.addEventListener("click", returnToLanding);
+nameInput.addEventListener("input", renderSuggestions);
+
+nameSuggestions.addEventListener("click", e => {
+  const button = e.target.closest("button[data-name]");
+  if (!button) {
+    return;
+  }
+
+  nameInput.value = button.dataset.name || "";
+  nameSuggestions.innerHTML = "";
+  nameForm.requestSubmit();
+});
 
 landing.classList.add("active");
 lockLandingScroll();
